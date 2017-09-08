@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        /*$.ajax()  //ajax function is executed directly on the jquery object  it has 2 parameters
+        // $.ajax(url, {})  1. URL directs to an end point like http://sabioapi2.azurewebsites.net/api/blogs
+        //2. A Settings Object.  this object in syntax '{ }' has settings inside of it like get, post, put, delete etc.
+
+        var blogUrl = "http://sabioapi2.azurewebsites.net/api/blogs";
+
+        var authorUrl = "http://sabioapi2.azurewebsites.net/api/authors";
+
+        var sabioAuth = { "SABIO-AUTH": "U654SQ1BL" };  //not sure if this is correct syntax yet.
+
+        var successFunction = function (data,status,xhr) {
+
+        };
+
+        var errorFunction = function () {
+
+        };
+
+
+
+        var settings = {
+            type: "GET"
+            , header: sabioAuth  //authorization goes in  header
+            , success: successfunction //event binding, on success execute this function name
+            , error: errorFunction  //event binding, on error execute this function name
+        }
+
+        $.ajax(blogUrl, )  ///must define everything before the call   Should be the last thing you do. */
+
+
+
+
+
+
+
+
+    </script>
+
+    <script>
+        /*
+        //get all of authors
+        var url = "http://sabioapi2.azurewebsites.net/api/authors";
+
+        var authorsReceived = function (data, status, xhr) {
+            console.log(data);
+        };
+
+        var errorFunction = function (xhr, errorText, error) {
+            console.log(errorText);
+        };
+        var settings = {
+            type: "GET"
+            , headers: { "SABIO-AUTH": "U64HW30HF" }
+            , success: authorsReceived
+            , error: errorFunction
+        };
+
+        $.ajax(url, settings);
+        */
+
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        /*
+        // get one author
+        var url = "http://sabioapi2.azurewebsites.net/api/authors";
+
+        var authorsReceived = function (data, status, xhr) {
+            console.log(data);
+        };
+
+        var errorFunction = function (xhr, errorText, error) {
+            console.log(errorText);
+        };
+        var settings = {
+            type: "GET"
+            , headers: { "SABIO-AUTH": "U64HW30HF" }
+            , success: authorsReceived
+            , error: errorFunction
+        };
+
+       // $.ajax(url, settings); // get all authors
+        $.ajax(url + "/1199599937", settings); // add url (+ "/id") to do a single author */
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        /* // POST: ADD NEW AUTHOR/DATA : W/JSON STRING / debugger
+         var url = "http://sabioapi2.azurewebsites.net/api/authors";
+
+         var authorsSuccessReceived = function (data, status, xhr) {
+             console.log(data);
+         };
+
+         var errorFunction = function (xhr, statusErrorText, error) {
+             console.log(statusErrorText);
+            //console.log(error);  // for debugger
+            //console.log(xhr);    // for debugger use this
+         };
+
+         // $.ajax(url, settings); // get all authors
+         // $.ajax(url + "/1199599937", settings); // add url (+ "/id") to do a single author
+
+         var settingPost = { //adds data
+             type: "POST"
+             , headers: { "SABIO-AUTH": "U64HW30HF" }
+             , success: authorsSuccessReceived
+             , error: errorFunction
+             , data: '{"firstName":"Joe","lastName":"Niccoli","age":23,"salary":75000}' // if you have an error for debugger look at responseJSON and response text
+             , contentType: "application/JSON"
+         };
+         $.ajax(url, settingPost);
+         */
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        /*
+                //  POST: ADD NEW AUTHOR/ DATA : W / JSON STRINGIFY
+                var url = "http://sabioapi2.azurewebsites.net/api/authors";
+
+                var authorsSuccessReceived = function (data, status, xhr) {
+                    console.log(data);
+                };
+
+                var errorFunction = function (xhr, statusErrorText, error) {
+                    console.log(statusErrorText); // shows error status
+                    // console.log(error);  //  shows error type
+                    //console.log(xhr);    // shows all of objects data
+                };
+
+
+                var newAuthor = {
+                    firstName: "Grant"
+                    , lastName: "griffin"
+                    , age: 30
+                    , salary: 50000
+                };
+
+                var authorJson = JSON.stringify(newAuthor); // JSON stringify
+
+                var settingPostStrinifyed = {
+                    type: "POST"
+                    , headers: { "SABIO-AUTH": "U64HW30HF" }
+                    , success: authorsSuccessReceived
+                    , error: errorFunction
+                    , data: authorJson
+                    , contentType: "application/JSON"
+                };
+                $.ajax(url, settingPostStrinifyed);
+                */
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        //  PUT: UPDATE AUTHOR/ DATA  W/JSON STRINGIFY
+        var url = "http://sabioapi2.azurewebsites.net/api/authors";
+
+        var authorsSuccessReceived = function (data, status, xhr) {
+            console.log(data); // shows object data
+            console.log(status); //  shows objects status
+            console.log(xhr); // shows all of objects data
+        };
+
+        var errorFunction = function (xhr, ErrorText, errorType) {
+            console.log(xhr);   // shows all of objects data
+            console.log(ErrorText); // shows object status is succsessful or not
+            console.log(errorType);  // shows what error type is occuring
+
+        };
+
+
+        var updateNewAuthor = {
+            id: 1560465918
+            , firstName: "CONOR"
+            , lastName: "griffin"
+            , age: 30
+            , salary: 50100
+        };
+
+        var authorJsonUpdate = JSON.stringify(updateNewAuthor); // JSON stringify
+
+        var settingPutStrinifyed = {
+            type: "PUT"
+            , headers: { "SABIO-AUTH": "U64HW30HF" }
+            , success: authorsSuccessReceived
+            , error: errorFunction
+            , data: authorJsonUpdate
+            , contentType: "application/JSON"
+        };
+        $.ajax(url + "/1560465918", settingPutStrinifyed);
+
+        /////////////////////////////////////////////////////////////////////////////////
+        /*
+        // DELETE: DELETE AUTHOR/W/JSON
+        var url = "http://sabioapi2.azurewebsites.net/api/authors";
+
+        var authorsSuccessReceived = function (data, status, xhr) {
+            console.log(data); // displays the object data
+            console.log(status); // shows that the status is successful or error
+            console.log(xhr); // show all of the object information
+        };
+
+        var errorFunction = function (xhr, ErrorText, errorTypeStatus) {
+         //console.log(xhr);    // for debugger shows error in all the object data
+          console.log(ErrorText); // shows if the error is successful or not
+        //console.log(errorTypeStatus);  // for debugger shows what the error type
+
+        };
+
+
+        var deleteAuthor = {
+            id: 8753043
+        };
+
+        var deleteAuthorJson = JSON.stringify(deleteAuthor);
+
+        var settingDelete = {
+            type: "DELETE"
+            , headers: { "SABIO-AUTH": "U64HW30HF" }
+            , success: authorsSuccessReceived
+            , error: errorFunction
+            , data: deleteAuthorJson
+            , contentType: "application/JSON"
+        };
+        $.ajax(url + "/87530434", settingDelete);
+        */
+    </script>
+</body>
+</html>
